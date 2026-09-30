@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import { Gfx, C } from '../src/core.js';
+import { drawRider, drawPelican } from '../src/pelican.js';
+import { encodePNG } from './png.js';
+const g = new Gfx(320, 180);
+g.clear(C('#8fd3ff'));
+g.rect(0, 150, 320, 30, C('#5a6988'));
+g.rect(0, 84, 320, 3, C('#5a6988'));
+for (let i = 0; i < 4; i++) drawRider(g, 40 + i * 76, 150, { s: 1, crankA: i * Math.PI / 2, dist: i * 5, clawd: { eyes: ['open','happy','sparkle','blink'][i], lx: 1, armL: i==1?'up':0, armR: i==1?'up':0 }, pel: { shades: i / 3 } });
+drawPelican(g, 40, 84, { s: 1, pose: 'stand', wing: 'fold' });
+drawPelican(g, 90, 84, { s: 1, pose: 'sit', wing: 'fold', eyes: 'closed' });
+drawPelican(g, 160, 84, { s: 2, pose: 'stand', wing: 'wave', wingA: -1.1, shades: 1 });
+drawPelican(g, 250, 84, { s: 2, pose: 'sit', wing: 'fold', beakOpen: 0.8, pouch: 0.9, eyes: 'wide' });
+fs.writeFileSync(process.argv[2], encodePNG(320, 180, g.u8, 4));

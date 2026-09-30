@@ -1,0 +1,15 @@
+{
+  "name": "clawd-goes-to-sea",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Clawd 去看海 — a one-minute pixel animated short",
+  "scripts": {
+    "font": "node tools/build-font.js",
+    "audio": "node tools/render-audio.js",
+    "snap": "node tools/snap.js",
+    "build": "node tools/build.js",
+    "render": "node tools/render.js",
+    "gif": "node tools/gif.js"
+  }
+}
